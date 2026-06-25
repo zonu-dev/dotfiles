@@ -1,0 +1,31 @@
+# Public Git defaults. Put identity and work-specific rewrites in local files.
+
+[include]
+	path = ~/.gitconfig.local
+
+[includeIf "gitdir:~/src/gh-me/"]
+	path = ~/.gitconfig-gh-me
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[core]
+	autocrlf = false
+	excludesfile = ~/.config/git/ignore
+
+[http]
+	postBuffer = 524288000
+
+[ghq]
+	root = ~/src
+
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential

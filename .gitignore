@@ -1,0 +1,12 @@
+.DS_Store
+
+# Machine-local/private overlays
+private/
+*.local
+*.private
+
+# Do not commit local identity or credentials.
+.gitconfig.local
+.gitconfig-gh-me
+.config/zsh/local.zsh
+Brewfile.private
