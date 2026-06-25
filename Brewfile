@@ -20,6 +20,7 @@ brew "micro"
 
 # Data/config tooling
 brew "age"
+brew "bitwarden-cli"
 brew "jq"
 brew "sops"
 brew "yq"
@@ -62,6 +63,7 @@ brew "yamllint"
 brew "rtk-ai/tap/rtk"
 
 # Apps and fonts
+cask "bitwarden"
 cask "font-blex-mono-nerd-font"
 cask "font-symbols-only-nerd-font"
 cask "ghostty"

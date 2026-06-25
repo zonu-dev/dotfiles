@@ -19,7 +19,7 @@ Use three layers:
 
 3. Root unlock secret
    - SOPS age private key
-   - stored outside Git, preferably in a password manager
+   - stored outside Git, preferably in password manager as a Secure Note
    - copied to a new Mac only during bootstrap
 
 ## Why Not Commit Private Files Directly?
@@ -75,11 +75,27 @@ PRIVATE_ROOT_KEY_PATH
 
 Recommended storage locations:
 
-- 1Password, password manager, or another password manager
+- password manager Secure Note
+- 1Password or another password manager
 - company-approved secret manager
 - encrypted offline backup
 
 After restoring the age key on the new Mac, encrypted files in the private repo can be decrypted.
+
+## password manager Setup
+
+Use password manager as the root recovery store, not as the Git-tracked file store.
+
+Recommended item:
+
+- Type: Secure Note
+- Name: `PRIVATE_DOTFILES_ROOT_KEY_ITEM`
+- Contents: the full contents of `PRIVATE_ROOT_KEY_PATH`
+- Notes: include that it unlocks `PRIVATE_OVERLAY_REPO`
+
+Do not store company secrets in the personal password manager item. Company secrets should stay in a company-approved account or vault.
+
+The password manager CLI is installed for convenience, but entering the note through the desktop app is fine. The important part is that the age private key exists outside the Mac before relying on the encrypted private repo for recovery.
 
 ## SSH Keys
 

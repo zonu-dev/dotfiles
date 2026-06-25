@@ -56,7 +56,30 @@ Then restart the shell:
 exec zsh -l
 ```
 
-## 5. Restore private state
+## 5. Restore password manager and private state
+
+Install/login to password manager and restore the Secure Note named:
+
+```text
+PRIVATE_DOTFILES_ROOT_KEY_ITEM
+```
+
+Create the SOPS age directory and paste the note contents into `PRIVATE_ROOT_KEY_FILE`:
+
+```sh
+mkdir -p ~/.config/sops/age
+chmod 700 ~/.config/sops ~/.config/sops/age
+micro PRIVATE_ROOT_KEY_PATH
+chmod 600 PRIVATE_ROOT_KEY_PATH
+```
+
+Then clone and restore the private encrypted repo:
+
+```sh
+git clone PRIVATE_OVERLAY_REMOTE ~/src/gh-me/PRIVATE_OVERLAY_REPO
+cd ~/src/gh-me/PRIVATE_OVERLAY_REPO
+./scripts/restore.sh
+```
 
 Create or restore the private files listed in `docs/private-files.md`, especially:
 
