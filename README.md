@@ -23,6 +23,8 @@ See `docs/private-files.md` for the private overlay policy.
 
 ## Install
 
+For a fresh Mac, follow `docs/bootstrap-macos.md`.
+
 Run a dry-run first:
 
 ```sh
@@ -36,3 +38,7 @@ Apply symlinks:
 ```
 
 Existing files are moved to `*.bak.<timestamp>` before symlinks are created.
+
+## Secrets
+
+Use a separate encrypted private store for secrets. See `docs/secrets.md`.

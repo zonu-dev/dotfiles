@@ -35,7 +35,9 @@ if [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
 fi
 
 # === ツール初期化 ===
-eval "$(rbenv init -)"
+if command -v rbenv >/dev/null 2>&1; then
+  eval "$(rbenv init -)"
+fi
 
 # Google Cloud SDK
 if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
@@ -46,10 +48,14 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 _clean_stale_path_entries
 
 # zoxide
-eval "$(zoxide init zsh)"
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
 
 # zsh-abbr
-source $(brew --prefix)/share/zsh-abbr/zsh-abbr.zsh
+if command -v brew >/dev/null 2>&1 && [ -f "$(brew --prefix)/share/zsh-abbr/zsh-abbr.zsh" ]; then
+  source "$(brew --prefix)/share/zsh-abbr/zsh-abbr.zsh"
+fi
 
 # fzf
 if [[ -t 0 && -t 1 ]]; then
@@ -59,15 +65,23 @@ elif [[ -d /opt/homebrew/opt/fzf/bin ]]; then
 fi
 
 # direnv
-eval "$(direnv hook zsh)"
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
 
 # mise
 _reset_stale_mise_path_state
-eval "$("$HOME/.local/bin/mise" activate zsh)"
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+elif [ -x "$HOME/.local/bin/mise" ]; then
+  eval "$("$HOME/.local/bin/mise" activate zsh)"
+fi
 _clean_stale_path_entries
 
 # jenv
-eval "$(jenv init -)"
+if command -v jenv >/dev/null 2>&1; then
+  eval "$(jenv init -)"
+fi
 _clean_stale_path_entries
 
 # bun completions
