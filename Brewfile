@@ -1,6 +1,7 @@
 # Core package manager/runtime bootstrap
 brew "mise"
 brew "git"
+brew "git-filter-repo"
 brew "git-lfs"
 brew "gh"
 brew "ghq"
