@@ -1,6 +1,6 @@
 # Fresh Mac Bootstrap
 
-This is the expected order for recreating the development environment on a new Mac.
+This is the expected public bootstrap order for recreating the non-secret parts of the development environment on a new Mac. Private overlay recovery details intentionally live outside this public repo.
 
 ## 1. Install Apple Command Line Tools
 
@@ -22,7 +22,7 @@ brew --version
 
 ## 3. Clone dotfiles
 
-For the first clone, HTTPS is fine because the repository is public:
+For the first clone, HTTPS is fine because this repository is public:
 
 ```sh
 mkdir -p ~/src/gh-me/zonu-dev
@@ -30,11 +30,7 @@ git clone https://github.com/zonu-dev/dotfiles.git ~/src/gh-me/zonu-dev/dotfiles
 cd ~/src/gh-me/zonu-dev/dotfiles
 ```
 
-After SSH is configured, the remote can be changed to:
-
-```sh
-git remote set-url origin git@gh-me:zonu-dev/dotfiles.git
-```
+After SSH is configured, the remote can be changed to the preferred SSH remote for this public repo.
 
 ## 4. Run bootstrap
 
@@ -56,39 +52,21 @@ Then restart the shell:
 exec zsh -l
 ```
 
-## 5. Restore password manager and private state
+## 5. Restore Private Overlay
 
-Install/login to password manager and restore the Secure Note named:
+Restore private state from your password manager and private encrypted overlay. Exact repository names, item names, and root-key paths are intentionally not documented here.
 
-```text
-PRIVATE_DOTFILES_ROOT_KEY_ITEM
-```
+Expected high-level order:
 
-Create the SOPS age directory and paste the note contents into `PRIVATE_ROOT_KEY_FILE`:
+1. Install and log in to the password manager.
+2. Restore root unlock material for the encrypted overlay.
+3. Clone or otherwise access the private encrypted overlay.
+4. Run that overlay's restore script.
+5. Confirm restored files have restrictive permissions.
 
-```sh
-mkdir -p ~/.config/sops/age
-chmod 700 ~/.config/sops ~/.config/sops/age
-micro PRIVATE_ROOT_KEY_PATH
-chmod 600 PRIVATE_ROOT_KEY_PATH
-```
+See `docs/private-files.md` for examples of private file categories, not concrete recovery locations.
 
-Then clone and restore the private encrypted repo:
-
-```sh
-git clone PRIVATE_OVERLAY_REMOTE ~/src/gh-me/PRIVATE_OVERLAY_REPO
-cd ~/src/gh-me/PRIVATE_OVERLAY_REPO
-./scripts/restore.sh
-```
-
-Create or restore the private files listed in `docs/private-files.md`, especially:
-
-- `~/.gitconfig.local`
-- `~/.gitconfig-gh-me`
-- `~/.config/zsh/local.zsh`
-- SOPS/age key material if encrypted private files are used
-
-## 6. Authenticate services
+## 6. Authenticate Services
 
 At minimum:
 
@@ -104,7 +82,7 @@ gcloud auth login
 gcloud auth application-default login
 ```
 
-## 7. Generate machine-specific SSH keys
+## 7. Generate Machine-Specific SSH Keys
 
 Prefer one SSH key per machine instead of copying private keys between Macs.
 
@@ -113,4 +91,4 @@ ssh-keygen -t ed25519 -C "new-mac"
 gh ssh-key add ~/.ssh/id_ed25519.pub --title "$(scutil --get ComputerName)"
 ```
 
-If an existing SSH key must be reused, keep it in a password manager or encrypted private repo, not in this public repository.
+If an existing SSH key must be reused, keep it in a password manager or encrypted private overlay, not in this public repository.

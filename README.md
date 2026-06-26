@@ -42,4 +42,4 @@ Existing files are moved to `*.bak.<timestamp>` before symlinks are created.
 
 ## Secrets
 
-Use a separate encrypted private store for secrets. See `docs/secrets.md`.
+Use a separate encrypted private overlay for secrets. See `docs/secrets.md`. Tool-agnostic maintenance workflows live in `agent-workflows/`.

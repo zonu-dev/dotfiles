@@ -1,14 +1,17 @@
 # Private Files
 
-These files are intentionally not tracked in the public dotfiles repository.
+These file categories are intentionally not tracked in the public dotfiles repository. The exact private overlay location and recovery instructions should be stored outside this repo.
 
-- `~/.config/zsh/local.zsh`: local shell helpers, Git identities, SSH key helpers.
-- `~/.gitconfig.local`: default Git user name/email and machine-specific Git settings.
-- `~/.gitconfig-gh-me`: personal GitHub identity for `~/src/gh-me`.
-- `~/.ssh/`: SSH private keys and config.
-- `~/.config/gh/hosts.yml`: GitHub auth token state.
-- `~/.config/gcloud/`: Google Cloud credentials and local config.
-- `PRIVATE_ROOT_KEY_PATH`: SOPS age private key.
-- `~/.bash_profile`: old shell profile containing deprecated paths and local secrets; do not publish as-is.
+Examples:
 
-The public files should only define reusable defaults and optional hooks that source these local files when they exist.
+- local shell overlays containing aliases, private paths, or environment-specific helpers
+- Git identity files and machine-specific Git settings
+- SSH private keys and SSH config
+- GitHub auth token state
+- cloud credentials and local config
+- SOPS/age private key material or other root unlock keys
+- old shell profiles that may contain deprecated paths or local secrets
+- `.env` files and service account material
+- recovery codes
+
+The public files should only define reusable defaults and optional hooks that source local files when they exist.

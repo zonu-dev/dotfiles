@@ -11,9 +11,6 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-DEFAULT_REPO = Path.home() / "src/gh-me/PRIVATE_OVERLAY_REPO"
-
-
 @dataclass(frozen=True)
 class Mapping:
     encrypted: str
@@ -67,8 +64,12 @@ def decrypt_hash(path: Path) -> tuple[str | None, str | None]:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--private-repo", default=os.environ.get("DOTFILES_PRIVATE_REPO", str(DEFAULT_REPO)))
+    parser.add_argument("--private-repo", default=os.environ.get("DOTFILES_PRIVATE_REPO"))
     args = parser.parse_args()
+
+    if not args.private_repo:
+        print("Set DOTFILES_PRIVATE_REPO or pass --private-repo <path>.", file=sys.stderr)
+        return 2
 
     repo = Path(args.private_repo).expanduser()
     mappings = parse_restore_mappings(repo)

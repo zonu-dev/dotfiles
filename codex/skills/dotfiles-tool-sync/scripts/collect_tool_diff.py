@@ -11,7 +11,7 @@ import tomllib
 from pathlib import Path
 
 
-DEFAULT_REPO = Path.home() / "src/gh-me/zonu-dev/dotfiles"
+DEFAULT_REPO = Path(__file__).resolve().parents[4]
 
 
 def run(args: list[str], cwd: Path | None = None) -> tuple[int, str, str]:
