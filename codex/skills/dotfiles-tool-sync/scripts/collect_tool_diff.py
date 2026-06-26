@@ -101,7 +101,9 @@ def mise_installed() -> dict[str, list[str]]:
 
 
 def npm_globals() -> list[str]:
-    code, out, _ = run(["npm", "list", "-g", "--depth=0", "--json"])
+    code, out, _ = run(["zsh", "-lic", "npm list -g --depth=0 --json"])
+    if code != 0 or not out:
+        code, out, _ = run(["npm", "list", "-g", "--depth=0", "--json"])
     if code != 0 or not out:
         return []
     try:
