@@ -48,6 +48,12 @@ Install Homebrew packages, apply dotfile symlinks, and install mise tools:
 
 This also installs tracked Ruby gems, npm global CLIs, and pipx CLIs.
 
+Verify the public setup:
+
+```sh
+./scripts/self-check.sh
+```
+
 Then restart the shell:
 
 ```sh
@@ -76,7 +82,8 @@ Expected high-level order:
 3. Authenticate GitHub if it was not done in the previous step.
 4. Clone or otherwise access the private encrypted overlay.
 5. Run that overlay's restore script.
-6. Confirm restored files have restrictive permissions.
+6. Run that overlay's self-check if available.
+7. Confirm restored files have restrictive permissions.
 
 See `docs/private-files.md` for examples of private file categories, not concrete recovery locations.
 

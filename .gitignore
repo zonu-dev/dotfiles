@@ -6,6 +6,13 @@ private/
 *.private
 
 # Do not commit local identity or credentials.
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.key
+*.agekey
 .gitconfig.local
 .gitconfig-gh-me
 .config/zsh/local.zsh

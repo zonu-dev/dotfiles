@@ -44,6 +44,22 @@ def parse_restore_mappings(repo: Path) -> list[Mapping]:
     return mappings
 
 
+def parse_encrypt_mappings(repo: Path) -> list[Mapping]:
+    encrypt = repo / "scripts/encrypt-current.sh"
+    if not encrypt.exists():
+        return []
+
+    pattern = re.compile(r'^encrypt_file\s+"\$HOME/([^"]+)"\s+"([^"]+)"')
+    mappings: list[Mapping] = []
+    for line in encrypt.read_text().splitlines():
+        match = pattern.search(line.strip())
+        if not match:
+            continue
+        live_suffix, encrypted = match.groups()
+        mappings.append(Mapping(encrypted=encrypted, live=Path.home() / live_suffix))
+    return mappings
+
+
 def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -100,12 +116,15 @@ def main() -> int:
 
     repo = Path(args.private_repo).expanduser()
     mappings = parse_restore_mappings(repo)
+    encrypt_mappings = parse_encrypt_mappings(repo)
     encrypted_paths = {m.encrypted for m in mappings}
+    encrypt_paths = {m.encrypted for m in encrypt_mappings}
     all_encrypted = sorted(str(p.relative_to(repo)) for p in (repo / "secrets").rglob("*.enc")) if (repo / "secrets").exists() else []
 
     print("# Private Secret Inventory\n")
     print(f"- Private repo: `{redact_repo_path(repo, args.show_paths)}`")
-    print(f"- Managed mappings: {len(mappings)}")
+    print(f"- Restore mappings: {len(mappings)}")
+    print(f"- Encrypt mappings: {len(encrypt_mappings)}")
     print()
 
     if not mappings:
@@ -148,6 +167,18 @@ def main() -> int:
             print(f"- `{path}`")
     else:
         print("- None")
+
+    print()
+    print("## Mapping Mismatches\n")
+    restore_only = sorted(encrypted_paths - encrypt_paths)
+    encrypt_only = sorted(encrypt_paths - encrypted_paths)
+    if not restore_only and not encrypt_only:
+        print("- None")
+    else:
+        for path in restore_only:
+            print(f"- restore-only: `{path}`")
+        for path in encrypt_only:
+            print(f"- encrypt-only: `{path}`")
 
     return 0
 
