@@ -65,6 +65,20 @@ def parse_mise_config(path: Path) -> dict[str, str]:
     return result
 
 
+def parse_global_gems(path: Path) -> dict[str, str]:
+    gems: dict[str, str] = {}
+    if not path.exists():
+        return gems
+    for line in path.read_text().splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        parts = stripped.split()
+        if len(parts) >= 2:
+            gems[parts[0]] = parts[1]
+    return gems
+
+
 def mise_installed() -> dict[str, list[str]]:
     code, out, _ = run(["mise", "ls", "--installed", "--json"])
     if code != 0 or not out:
@@ -129,6 +143,23 @@ def gem_globals() -> list[str]:
     return sorted(result)
 
 
+def gem_versions() -> dict[str, list[str]]:
+    versions: dict[str, list[str]] = {}
+    for line in lines_from(["gem", "list", "--local"]):
+        match = re.match(r"^(\S+)\s+\(([^)]+)\)", line)
+        if not match:
+            continue
+        name = match.group(1)
+        raw_versions = match.group(2)
+        parsed = []
+        for value in raw_versions.split(","):
+            version = value.strip().replace("default: ", "")
+            if version:
+                parsed.append(version)
+        versions[name] = parsed
+    return versions
+
+
 def section(title: str, rows: list[str]) -> None:
     print(f"## {title}\n")
     if rows:
@@ -147,9 +178,11 @@ def main() -> int:
     repo = Path(args.dotfiles_repo).expanduser()
     brewfile = repo / "Brewfile"
     mise_config = repo / "mise/.config/mise/config.toml"
+    global_gems_file = repo / "ruby/global-gems.txt"
 
     repo_formulas, repo_casks = parse_brewfile(brewfile)
     repo_mise = parse_mise_config(mise_config)
+    repo_gems = parse_global_gems(global_gems_file)
 
     brew_all = set(lines_from(["brew", "list", "--formula", "-1"]))
     brew_top = set(lines_from(["brew", "leaves", "--installed-on-request"]))
@@ -165,8 +198,12 @@ def main() -> int:
     print(f"- Brewfile: `{brewfile}`")
     print(f"- mise config: `{mise_config}`\n")
 
-    section("Brewfile formulas missing from Homebrew", sorted(repo_formulas - brew_all))
-    section("Top-level Homebrew formulas absent from Brewfile", sorted(brew_top - repo_formulas))
+    repo_formula_names = {formula.split("/")[-1] for formula in repo_formulas}
+    missing_formulas = sorted(formula for formula in repo_formulas if formula.split("/")[-1] not in brew_all)
+    untracked_top_formulas = sorted(formula for formula in brew_top if formula.split("/")[-1] not in repo_formula_names)
+
+    section("Brewfile formulas missing from Homebrew", missing_formulas)
+    section("Top-level Homebrew formulas absent from Brewfile", untracked_top_formulas)
     section("Brewfile casks missing locally", sorted(repo_casks - casks))
     section("Installed Homebrew casks absent from Brewfile", sorted(casks - repo_casks))
 
@@ -184,6 +221,15 @@ def main() -> int:
 
     section("mise tools configured in repo but missing locally", mise_missing)
     section("mise installed tools absent from repo config", mise_untracked)
+
+    installed_gems = gem_versions()
+    missing_gems = []
+    for name, version in sorted(repo_gems.items()):
+        if version not in installed_gems.get(name, []):
+            installed = ", ".join(installed_gems.get(name, [])) or "none"
+            missing_gems.append(f"{name} {version} (installed: {installed})")
+
+    section("Tracked Ruby global gems missing locally", missing_gems)
     section("npm global packages inventory", npm_globals())
     section("pipx global packages inventory", pipx_globals())
     section("gem local packages inventory", gem_globals())

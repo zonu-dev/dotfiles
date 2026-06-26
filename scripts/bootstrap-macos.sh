@@ -23,6 +23,7 @@ fi
 
 brew bundle --file "$repo_root/Brewfile"
 "$repo_root/scripts/install.sh" --apply
+"$repo_root/scripts/bootstrap-ruby.sh"
 
 if command -v mise >/dev/null 2>&1; then
   mise install

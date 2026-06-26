@@ -1,0 +1,4 @@
+# gem version
+cocoapods 1.16.2
+fastlane 2.230.0
+xcpretty 0.4.1

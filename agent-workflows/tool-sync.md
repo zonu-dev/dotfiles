@@ -10,6 +10,7 @@ Identify drift between the current Mac and the reproducible configuration, then 
 
 - Homebrew baseline: `Brewfile`
 - mise baseline: `mise/.config/mise/config.toml`
+- Ruby baseline: `rbenv/.rbenv/version` and `ruby/global-gems.txt`
 - Read-only audit script: `codex/skills/dotfiles-tool-sync/scripts/collect_tool_diff.py`
 
 ## Workflow
@@ -27,6 +28,7 @@ Identify drift between the current Mac and the reproducible configuration, then 
    - local Homebrew casks absent from `Brewfile`
    - mise tools installed locally but absent from repo config
    - repo-configured mise tools missing locally
+   - tracked Ruby global gems missing locally
    - npm, pipx, and gem global inventories that need human judgment
 
 3. Ask which local-only tools should become part of the reproducible baseline. Do not add every local tool automatically.
@@ -35,6 +37,7 @@ Identify drift between the current Mac and the reproducible configuration, then 
 
    - Add Homebrew CLI tools and apps to `Brewfile`.
    - Add versioned language runtimes and toolchains to `mise/.config/mise/config.toml`.
+   - Add selected global Ruby CLIs to `ruby/global-gems.txt`.
    - Leave project dependencies in their project repos, not global dotfiles.
    - Avoid adding transitive Homebrew dependencies unless the user directly uses them.
 

@@ -8,6 +8,7 @@ Publicly tracked:
 
 - zsh bootstrap files
 - mise global tool versions
+- rbenv global Ruby version and selected global Ruby CLI gems
 - Git defaults without identity
 - global Git ignore
 - tmux, yazi, Zed, gh-dash settings

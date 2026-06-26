@@ -28,7 +28,6 @@ brew "sevenzip"
 
 # Language and mobile development
 brew "bundletool"
-brew "cocoapods"
 brew "dotnet@8"
 brew "gradle"
 brew "ios-deploy"
@@ -38,6 +37,7 @@ brew "libpq"
 brew "openjdk@17"
 brew "pipx"
 brew "rbenv"
+brew "ruby-build"
 
 # Build, media, and document tooling
 brew "ffmpeg"
