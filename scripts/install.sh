@@ -50,6 +50,8 @@ link_file "$repo_root/tmux/.tmux.conf" "$HOME/.tmux.conf"
 link_file "$repo_root/yazi/.config/yazi/yazi.toml" "$HOME/.config/yazi/yazi.toml"
 link_file "$repo_root/zed/.config/zed/settings.json" "$HOME/.config/zed/settings.json"
 link_file "$repo_root/gh-dash/.config/gh-dash/config.yml" "$HOME/.config/gh-dash/config.yml"
+link_file "$repo_root/codex/skills/dotfiles-tool-sync" "$HOME/.codex/skills/dotfiles-tool-sync"
+link_file "$repo_root/codex/skills/dotfiles-secret-update" "$HOME/.codex/skills/dotfiles-secret-update"
 
 if (( apply )); then
   printf 'installed dotfiles from %s\n' "$repo_root"

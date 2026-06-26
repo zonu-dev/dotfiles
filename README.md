@@ -11,6 +11,7 @@ Publicly tracked:
 - Git defaults without identity
 - global Git ignore
 - tmux, yazi, Zed, gh-dash settings
+- personal Codex skills that contain no secrets
 
 Not tracked:
 

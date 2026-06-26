@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dotfiles Secret Update"
+  short_description: "Safely update SOPS private dotfiles"
+  default_prompt: "Use $dotfiles-secret-update to add or update a personal secret in private-overlay without exposing secret values."

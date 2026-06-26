@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dotfiles Tool Sync"
+  short_description: "Compare local tools with dotfiles"
+  default_prompt: "Use $dotfiles-tool-sync to compare local global developer tools with the dotfiles repo and propose repo updates."
