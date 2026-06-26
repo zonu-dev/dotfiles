@@ -1,0 +1,2 @@
+# package version
+rembg 2.0.74

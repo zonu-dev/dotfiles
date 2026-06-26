@@ -24,10 +24,13 @@ fi
 brew bundle --file "$repo_root/Brewfile"
 "$repo_root/scripts/install.sh" --apply
 "$repo_root/scripts/bootstrap-ruby.sh"
+"$repo_root/scripts/bootstrap-pipx.sh"
 
 if command -v mise >/dev/null 2>&1; then
   mise install
 fi
+
+"$repo_root/scripts/bootstrap-npm.sh"
 
 cat <<'MSG'
 Bootstrap complete.

@@ -46,6 +46,8 @@ Install Homebrew packages, apply dotfile symlinks, and install mise tools:
 ./scripts/bootstrap-macos.sh
 ```
 
+This also installs tracked Ruby gems, npm global CLIs, and pipx CLIs.
+
 Then restart the shell:
 
 ```sh

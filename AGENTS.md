@@ -38,10 +38,10 @@ Codex-specific wrappers live under `codex/skills/` and should stay thin. Other t
 Before finishing relevant changes, run what applies:
 
 ```sh
-git diff --check
+./scripts/self-check.sh
 ```
 
-When Codex skills change:
+For narrow changes where the full self-check is not appropriate, run the relevant subset. When Codex skills change:
 
 ```sh
 python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py codex/skills/dotfiles-tool-sync
