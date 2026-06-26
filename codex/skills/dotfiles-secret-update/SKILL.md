@@ -19,7 +19,7 @@ Use this Codex wrapper for the tool-agnostic workflow in `../../../agent-workflo
 1. Obtain or confirm the private encrypted overlay path from the user or `DOTFILES_PRIVATE_REPO`.
 2. Inspect state without printing values:
    ```bash
-   python3 <skill>/scripts/private_secret_inventory.py --private-repo "$DOTFILES_PRIVATE_REPO"
+   python3 <repo>/scripts/agent/private_secret_inventory.py --private-repo "$DOTFILES_PRIVATE_REPO"
    ```
 3. Classify the requested material as personal, company-owned, or unknown.
 4. Update the live file or private overlay as approved by the user.
@@ -28,4 +28,4 @@ Use this Codex wrapper for the tool-agnostic workflow in `../../../agent-workflo
 
 ## Resource
 
-- `scripts/private_secret_inventory.py`: compare live files against encrypted overlay mappings by hash without printing secret contents.
+- `<repo>/scripts/agent/private_secret_inventory.py`: compare live files against encrypted overlay mappings by hash without printing secret contents.

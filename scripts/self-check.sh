@@ -12,6 +12,8 @@ import py_compile
 from pathlib import Path
 
 paths = [
+    Path("scripts/agent/collect_tool_diff.py"),
+    Path("scripts/agent/private_secret_inventory.py"),
     Path("codex/skills/dotfiles-tool-sync/scripts/collect_tool_diff.py"),
     Path("codex/skills/dotfiles-secret-update/scripts/private_secret_inventory.py"),
 ]

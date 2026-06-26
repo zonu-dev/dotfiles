@@ -11,7 +11,7 @@ Use this Codex wrapper for the tool-agnostic workflow in `../../../agent-workflo
 
 1. Run the audit script:
    ```bash
-   python3 <skill>/scripts/collect_tool_diff.py
+   python3 <repo>/scripts/agent/collect_tool_diff.py
    ```
 2. Summarize drift between local global tools and repo config.
 3. Ask the user which local-only tools should be reflected in the repo.
@@ -21,4 +21,4 @@ Use this Codex wrapper for the tool-agnostic workflow in `../../../agent-workflo
 
 ## Resource
 
-- `scripts/collect_tool_diff.py`: read-only Markdown report for Homebrew, mise, npm, pipx, and gem global state.
+- `<repo>/scripts/agent/collect_tool_diff.py`: read-only Markdown report for Homebrew, mise, npm, pipx, and gem global state.

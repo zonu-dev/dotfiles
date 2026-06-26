@@ -27,7 +27,7 @@ Decide case by case before moving these into Homebrew, mise, or another reproduc
 Run the tool sync audit after changing global tools:
 
 ```sh
-python3 codex/skills/dotfiles-tool-sync/scripts/collect_tool_diff.py
+python3 scripts/agent/collect_tool_diff.py
 ```
 
 Do not add every local-only tool automatically. Add only tools that should be part of the fresh-Mac baseline.

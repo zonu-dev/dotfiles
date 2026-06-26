@@ -37,7 +37,7 @@ Do not infer the private overlay location from public documentation. This public
 2. Inspect current encrypted overlay state without printing values.
 
    ```sh
-   python3 codex/skills/dotfiles-secret-update/scripts/private_secret_inventory.py --private-repo "$DOTFILES_PRIVATE_REPO"
+   python3 scripts/agent/private_secret_inventory.py --private-repo "$DOTFILES_PRIVATE_REPO"
    ```
 
 3. Classify the requested material.
@@ -68,7 +68,7 @@ Do not infer the private overlay location from public documentation. This public
 7. Verify without revealing contents.
 
    ```sh
-   python3 /path/to/public-dotfiles/codex/skills/dotfiles-secret-update/scripts/private_secret_inventory.py --private-repo "$DOTFILES_PRIVATE_REPO"
+   python3 /path/to/public-dotfiles/scripts/agent/private_secret_inventory.py --private-repo "$DOTFILES_PRIVATE_REPO"
    git status --short
    git diff --stat
    ```

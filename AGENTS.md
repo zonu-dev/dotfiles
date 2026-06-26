@@ -51,7 +51,7 @@ python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py codex/sk
 For tool sync checks:
 
 ```sh
-python3 codex/skills/dotfiles-tool-sync/scripts/collect_tool_diff.py
+python3 scripts/agent/collect_tool_diff.py
 ```
 
 For private overlay checks, only run the inventory script after the user provides or confirms the private overlay path. Never print decrypted contents.

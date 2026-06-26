@@ -13,14 +13,14 @@ Identify drift between the current Mac and the reproducible configuration, then 
 - Ruby baseline: `rbenv/.rbenv/version` and `ruby/global-gems.txt`
 - npm global CLI baseline: `npm/global-packages.txt`
 - pipx CLI baseline: `pipx/global-packages.txt`
-- Read-only audit script: `codex/skills/dotfiles-tool-sync/scripts/collect_tool_diff.py`
+- Read-only audit script: `scripts/agent/collect_tool_diff.py`
 
 ## Workflow
 
 1. Generate the audit report.
 
    ```sh
-   python3 codex/skills/dotfiles-tool-sync/scripts/collect_tool_diff.py
+   python3 scripts/agent/collect_tool_diff.py
    ```
 
 2. Summarize the report for the user. Group findings as:
