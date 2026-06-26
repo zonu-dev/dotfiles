@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import os
 import re
+import stat
 import subprocess
 import sys
 from dataclasses import dataclass
@@ -55,6 +56,13 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def permission_status(path: Path) -> str:
+    mode = stat.S_IMODE(path.stat().st_mode)
+    if mode & 0o077:
+        return f"permission-too-open ({mode:04o}, expected 0600)"
+    return f"permission-ok ({mode:04o})"
+
+
 def decrypt_hash(path: Path) -> tuple[str | None, str | None]:
     code, out, err = run(["sops", "--decrypt", "--input-type", "binary", "--output-type", "binary", str(path)])
     if code != 0:
@@ -92,7 +100,7 @@ def main() -> int:
             encrypted_exists = encrypted.exists()
             live_exists = live.exists()
             status: str
-            detail = ""
+            details: list[str] = []
 
             if not encrypted_exists and not live_exists:
                 status = "missing-both"
@@ -104,11 +112,13 @@ def main() -> int:
                 decrypted_hash, error = decrypt_hash(encrypted)
                 if error:
                     status = "decrypt-failed"
-                    detail = f" ({error.splitlines()[0]})" if error else ""
+                    details.append(error.splitlines()[0])
                 else:
                     live_hash = sha256_file(live)
                     status = "in-sync" if decrypted_hash == live_hash else "differs"
+                    details.append(permission_status(live))
 
+            detail = f" ({'; '.join(details)})" if details else ""
             print(f"- `{mapping.encrypted}` -> `{live}`: {status}{detail}")
         print()
 

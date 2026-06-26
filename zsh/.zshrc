@@ -85,7 +85,7 @@ fi
 _clean_stale_path_entries
 
 # bun completions
-[ -s "/Users/s01080/.bun/_bun" ] && source "/Users/s01080/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # === キーバインド (fzf連携) ===
 if [[ -t 0 && -t 1 ]]; then

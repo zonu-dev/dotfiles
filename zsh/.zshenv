@@ -1,6 +1,5 @@
 # === 環境変数 ===
 export POD_EXECUTABLE="$HOME/.rbenv/shims/pod"
-export PRIVATE_ROOT_KEY_ENV="PRIVATE_ROOT_KEY_PATH"
 export BUN_INSTALL="$HOME/.bun"
 
 # Codex launches non-interactive shells that may skip ~/.zprofile, so expose

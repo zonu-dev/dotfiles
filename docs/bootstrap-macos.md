@@ -52,7 +52,18 @@ Then restart the shell:
 exec zsh -l
 ```
 
-## 5. Restore Private Overlay
+## 5. Authenticate GitHub
+
+Authenticate GitHub before cloning any private overlay. HTTPS or `gh repo clone` is the least fragile first-clone path on a fresh Mac because SSH keys may not exist yet.
+
+```sh
+gh auth login
+gh auth setup-git
+```
+
+Generate and register an SSH key before private SSH clones only if you want SSH to be the first clone method.
+
+## 6. Restore Private Overlay
 
 Restore private state from your password manager and private encrypted overlay. Exact repository names, item names, and root-key paths are intentionally not documented here.
 
@@ -60,19 +71,19 @@ Expected high-level order:
 
 1. Install and log in to the password manager.
 2. Restore root unlock material for the encrypted overlay.
-3. Clone or otherwise access the private encrypted overlay.
-4. Run that overlay's restore script.
-5. Confirm restored files have restrictive permissions.
+3. Authenticate GitHub if it was not done in the previous step.
+4. Clone or otherwise access the private encrypted overlay.
+5. Run that overlay's restore script.
+6. Confirm restored files have restrictive permissions.
 
 See `docs/private-files.md` for examples of private file categories, not concrete recovery locations.
 
-## 6. Authenticate Services
+## 7. Authenticate Additional Services
 
-At minimum:
+At minimum, confirm GitHub auth is still healthy:
 
 ```sh
-gh auth login
-gh auth setup-git
+gh auth status
 ```
 
 For Google Cloud, run the appropriate login commands for the project:
@@ -82,7 +93,7 @@ gcloud auth login
 gcloud auth application-default login
 ```
 
-## 7. Generate Machine-Specific SSH Keys
+## 8. Generate Machine-Specific SSH Keys
 
 Prefer one SSH key per machine instead of copying private keys between Macs.
 
@@ -91,4 +102,12 @@ ssh-keygen -t ed25519 -C "new-mac"
 gh ssh-key add ~/.ssh/id_ed25519.pub --title "$(scutil --get ComputerName)"
 ```
 
+After SSH is configured, private and public remotes can be changed to the preferred SSH remote.
+
 If an existing SSH key must be reused, keep it in a password manager or encrypted private overlay, not in this public repository.
+
+## 9. Public History Metadata
+
+Treat any private recovery names or paths that ever appeared in this public repository's history as public metadata. Prefer renaming external password-manager items or recovery labels if the names should not remain recognizable.
+
+Do not rewrite public Git history unless an actual secret value, private key, or token was committed. History rewrites require coordinated force-pushes and fresh clones.
