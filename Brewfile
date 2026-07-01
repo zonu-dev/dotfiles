@@ -56,7 +56,6 @@ brew "docker-compose"
 brew "kubernetes-cli"
 brew "pinact"
 brew "postgresql@15"
-brew "tailscale"
 brew "terminal-notifier"
 brew "yamllint"
 
