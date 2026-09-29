@@ -8,6 +8,7 @@ The workflow markdown files are the source of truth. Tool-specific integrations,
 
 - `tool-sync.md`: compare global tools installed on the Mac with reproducible repo config and propose updates.
 - `secret-update.md`: update a private encrypted overlay without leaking secret values into public files or chat.
+- `codex-retention.md`: classify Codex/Claude history, work areas, caches, and artifacts before cleanup.
 
 ## Public Repo Boundary
 

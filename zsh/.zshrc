@@ -147,3 +147,8 @@ function ghq() {
 if [ -f "$HOME/.config/zsh/local.zsh" ]; then
   source "$HOME/.config/zsh/local.zsh"
 fi
+
+# Keep interactive pagers in UTF-8 even when the terminal omits locale variables.
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export LESSCHARSET=utf-8

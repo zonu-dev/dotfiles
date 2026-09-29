@@ -22,6 +22,7 @@ Use `agent-workflows/` as the tool-agnostic source of truth:
 
 - `agent-workflows/tool-sync.md` for global tool drift audits and repo updates.
 - `agent-workflows/secret-update.md` for personal secret overlay updates without exposing values.
+- `agent-workflows/codex-retention.md` for Codex/Claude storage cleanup and retention-policy work.
 
 Codex-specific wrappers live under `codex/skills/` and should stay thin. Other tools can read the workflow markdown directly and run the same scripts.
 

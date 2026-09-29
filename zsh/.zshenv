@@ -15,3 +15,8 @@ if [ -d /opt/homebrew/bin ]; then
     *) export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH" ;;
   esac
 fi
+
+# User-local wrappers should take precedence even in non-interactive shells.
+typeset -U path
+path=("$HOME/.local/bin" "${(@)path:#$HOME/.local/bin}")
+export PATH

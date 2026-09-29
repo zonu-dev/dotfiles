@@ -42,4 +42,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/.maestro/bin:$PATH"
 
 # Godot
-export GODOT_BIN="/opt/homebrew/bin/godot"
+export GODOT_BIN="$HOME/Applications/Godot-4.7.1-stable.app/Contents/MacOS/Godot"
+
+# Keep user-local wrappers ahead of Homebrew and tool-specific bins.
+path=("$HOME/.local/bin" "${(@)path:#$HOME/.local/bin}")
+export PATH
