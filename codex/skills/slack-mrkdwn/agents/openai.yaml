@@ -1,0 +1,4 @@
+interface:
+  display_name: "Slack mrkdwn"
+  short_description: "Prepare Slack-safe message formatting"
+  default_prompt: "Use $slack-mrkdwn to prepare Slack-ready text."

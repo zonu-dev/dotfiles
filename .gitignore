@@ -17,3 +17,5 @@ private/
 .gitconfig-gh-me
 .config/zsh/local.zsh
 Brewfile.private
+__pycache__/
+*.pyc

@@ -17,6 +17,9 @@ Publicly tracked:
 - Hammerspoon, Ghostty, cmux, zsh-abbr settings
 - Claude Code user config (CLAUDE.md, settings.json, hooks, skills, statusline) with machine paths replaced by `$HOME`
 - Codex AGENTS.md and a curated `codex/config.reference.toml` (not symlinked)
+- personal Codex skills (github-pr-review, slack-mrkdwn, opensrc, godot-mobile, hatch-pet, session-harness-auditor, create-goal-prompt, zoochi-icon, settings-sync)
+- `~/.local/bin` wrappers (`gh` via direnv, `term-bg`), deadbranch config, Xcode key bindings
+- `scripts/macos-defaults.sh` for Dock / Finder / screenshot defaults
 
 Not tracked:
 
@@ -58,3 +61,10 @@ Run the local validation suite before committing changes:
 ```sh
 ./scripts/self-check.sh
 ```
+
+## Manual steps not covered by Brewfile
+
+- `gh extension install dlvhdr/gh-dash`
+- `deadbranch` binary is installed manually into `~/.local/bin` (see satococoa/tap)
+- Go is managed by gvm (`~/.gvm`), not Homebrew; `.zshrc` sources it only when present
+- run `./scripts/macos-defaults.sh` once on a new Mac

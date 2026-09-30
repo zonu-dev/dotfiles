@@ -1,0 +1,4 @@
+interface:
+  display_name: "Goalプロンプト作成"
+  short_description: "goalコマンド用プロンプトをヒアリングして生成する"
+  default_prompt: "$create-goal-prompt を使って、Codexの /goal に渡すプロンプトをヒアリング、整理、承認確認したうえで生成してください。"

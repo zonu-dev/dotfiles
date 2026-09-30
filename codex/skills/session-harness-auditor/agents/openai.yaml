@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session Harness Auditor"
+  short_description: "Audit session logs for harness gaps"
+  default_prompt: "Use $session-harness-auditor to analyze a Codex session log and propose scoped Minimum Viable Harness improvements."

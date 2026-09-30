@@ -1,0 +1,4 @@
+interface:
+  display_name: "ZOOCHI Icon"
+  short_description: "Generate ZOOCHI app icons for Apple Icon Composer"
+  default_prompt: "Use $zoochi-icon to draft a ZOOCHI app icon prompt, choose the palette, and list the required post-processing steps."

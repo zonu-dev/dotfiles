@@ -336,6 +336,12 @@
         "source": "github",
         "repo": "openai/codex-plugin-cc"
       }
+    },
+    "zonu-plugins": {
+      "source": {
+        "source": "git",
+        "url": "git@gh-me:zonu-dev/claude-plugins.git"
+      }
     }
   },
   "language": "日本語",
