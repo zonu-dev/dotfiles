@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+real_gh="/opt/homebrew/bin/gh"
+
+if command -v direnv >/dev/null 2>&1; then
+  exec direnv exec "$PWD" "$real_gh" "$@"
+fi
+
+exec "$real_gh" "$@"

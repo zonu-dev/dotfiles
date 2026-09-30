@@ -40,6 +40,25 @@ link_file() {
   run ln -s "$source" "$target"
 }
 
+copy_file() {
+  # アプリ側が書き戻すファイルは symlink せず、無いときだけコピーする
+  local source="$1"
+  local target="$2"
+
+  if [[ ! -e "$source" ]]; then
+    printf 'missing source: %s\n' "$source" >&2
+    return 1
+  fi
+
+  if [[ -e "$target" || -L "$target" ]]; then
+    printf 'keep existing: %s\n' "$target"
+    return 0
+  fi
+
+  run mkdir -p "$(dirname "$target")"
+  run cp "$source" "$target"
+}
+
 link_file "$repo_root/zsh/.zshenv" "$HOME/.zshenv"
 link_file "$repo_root/zsh/.zprofile" "$HOME/.zprofile"
 link_file "$repo_root/zsh/.zshrc" "$HOME/.zshrc"
@@ -55,23 +74,27 @@ link_file "$repo_root/codex/skills/dotfiles-tool-sync" "$HOME/.codex/skills/dotf
 link_file "$repo_root/codex/skills/dotfiles-secret-update" "$HOME/.codex/skills/dotfiles-secret-update"
 link_file "$repo_root/hammerspoon/.hammerspoon/init.lua" "$HOME/.hammerspoon/init.lua"
 link_file "$repo_root/ghostty/.config/ghostty/config" "$HOME/.config/ghostty/config"
-link_file "$repo_root/cmux/.config/cmux/cmux.json" "$HOME/.config/cmux/cmux.json"
 link_file "$repo_root/zsh-abbr/.config/zsh-abbr/user-abbreviations" "$HOME/.config/zsh-abbr/user-abbreviations"
 link_file "$repo_root/claude/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 link_file "$repo_root/claude/.claude/RTK.md" "$HOME/.claude/RTK.md"
 link_file "$repo_root/claude/.claude/cmux.md" "$HOME/.claude/cmux.md"
 link_file "$repo_root/claude/.claude/cmux-reference.md" "$HOME/.claude/cmux-reference.md"
-link_file "$repo_root/claude/.claude/statusline.sh" "$HOME/.claude/statusline.sh"
-link_file "$repo_root/claude/.claude/settings.json" "$HOME/.claude/settings.json"
-link_file "$repo_root/claude/.claude/hooks" "$HOME/.claude/hooks"
+link_file "$repo_root/claude/.claude/statusline.py" "$HOME/.claude/statusline.py"
+copy_file "$repo_root/claude/.claude/settings.json" "$HOME/.claude/settings.json"
+link_file "$repo_root/claude/.claude/hooks/auto-implement-guard.sh" "$HOME/.claude/hooks/auto-implement-guard.sh"
+link_file "$repo_root/claude/.claude/hooks/default-guard.sh" "$HOME/.claude/hooks/default-guard.sh"
+link_file "$repo_root/claude/.claude/hooks/rtk-rewrite.sh" "$HOME/.claude/hooks/rtk-rewrite.sh"
+link_file "$repo_root/claude/.claude/hooks/term-bg-permission.sh" "$HOME/.claude/hooks/term-bg-permission.sh"
+link_file "$repo_root/claude/.claude/hooks/term-bg-running.sh" "$HOME/.claude/hooks/term-bg-running.sh"
+link_file "$repo_root/claude/.claude/hooks/term-bg-stop.sh" "$HOME/.claude/hooks/term-bg-stop.sh"
 link_file "$repo_root/claude/.claude/skills/create-goal-prompt" "$HOME/.claude/skills/create-goal-prompt"
 link_file "$repo_root/claude/.claude/skills/zoochi-icon" "$HOME/.claude/skills/zoochi-icon"
 link_file "$repo_root/codex/.codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
 link_file "$repo_root/codex/.codex/RTK.md" "$HOME/.codex/RTK.md"
-link_file "$repo_root/local-bin/.local/bin/gh" "$HOME/.local/bin/gh"
-link_file "$repo_root/local-bin/.local/bin/term-bg" "$HOME/.local/bin/term-bg"
+link_file "$repo_root/local-bin/bin/gh" "$HOME/.local/bin/gh"
+link_file "$repo_root/local-bin/bin/term-bg" "$HOME/.local/bin/term-bg"
 link_file "$repo_root/deadbranch/.deadbranch/config.toml" "$HOME/.deadbranch/config.toml"
-link_file "$repo_root/xcode/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings" "$HOME/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings"
+copy_file "$repo_root/xcode/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings" "$HOME/Library/Developer/Xcode/UserData/KeyBindings/Default.idekeybindings"
 link_file "$repo_root/codex/skills/create-goal-prompt" "$HOME/.codex/skills/create-goal-prompt"
 link_file "$repo_root/codex/skills/github-pr-review" "$HOME/.codex/skills/github-pr-review"
 link_file "$repo_root/codex/skills/godot-mobile" "$HOME/.codex/skills/godot-mobile"
@@ -80,7 +103,7 @@ link_file "$repo_root/codex/skills/opensrc" "$HOME/.codex/skills/opensrc"
 link_file "$repo_root/codex/skills/session-harness-auditor" "$HOME/.codex/skills/session-harness-auditor"
 link_file "$repo_root/codex/skills/slack-mrkdwn" "$HOME/.codex/skills/slack-mrkdwn"
 link_file "$repo_root/codex/skills/zoochi-icon" "$HOME/.codex/skills/zoochi-icon"
-link_file "$repo_root/codex/skills/settings-sync" "$HOME/.agents/skills/settings-sync"
+link_file "$repo_root/claude/.claude/skills/settings-sync" "$HOME/.claude/skills/settings-sync"
 
 if (( apply )); then
   printf 'installed dotfiles from %s\n' "$repo_root"

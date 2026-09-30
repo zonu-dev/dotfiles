@@ -42,8 +42,6 @@
       "Bash(tail *)",
       "Bash(tar -t:*)",
       "Bash(test *)",
-      "Bash(unity -version:*)",
-      "Bash(uloop *)",
       "Bash(unzip -l:*)",
       "Bash(unzip -t:*)",
       "Bash(wc *)",
@@ -66,7 +64,6 @@
       "WebFetch(domain:www.npmjs.com)",
       "WebFetch(domain:www.schemastore.org)",
       "WebSearch",
-      "Bash(.toolchain/bin/jb:*)",
       "Bash(echo:*)",
       "Bash(file:*)",
       "Bash(find:*)",
@@ -319,7 +316,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "python3 $HOME/.claude/statusline.sh"
+    "command": "python3 $HOME/.claude/statusline.py"
   },
   "enabledPlugins": {
     "dig@kuu-marketplace": true,
@@ -341,6 +338,24 @@
       "source": {
         "source": "git",
         "url": "git@gh-me:zonu-dev/claude-plugins.git"
+      }
+    },
+    "kuu-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "fumiya-kume/claude-code"
+      }
+    },
+    "agent-browser": {
+      "source": {
+        "source": "github",
+        "repo": "vercel-labs/agent-browser"
+      }
+    },
+    "anthropic-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/skills"
       }
     }
   },

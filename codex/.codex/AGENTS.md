@@ -13,10 +13,10 @@
 - Before recursively searching outside the current repository, narrow the target to specific directories and file types. Do not run broad recursive searches over `$HOME`, `~/.codex`, session logs, caches, or plugin caches; enumerate likely files first and exclude high-volume paths.
 
 ## Reference Documents
-- [cmux - AI Agent Terminal](~/.claude/cmux.md): cmux のコマンドリファレンスと制約事項
-- For Codex/Claude storage cleanup or retention-policy work, read [Codex/Claude retention workflow](~/src/gh-me/zonu-dev/dotfiles/agent-workflows/codex-retention.md) before proposing deletion.
+- cmux（AI Agent Terminal）を操作するときは、先に `~/.claude/cmux.md`（dotfiles の `claude/.claude/cmux.md`）を読む。コマンドリファレンスと WKWebView の制約が書いてある
+- For Codex/Claude storage cleanup or retention-policy work, read `agent-workflows/codex-retention.md` in the dotfiles repository before proposing deletion.
 
-@RTK.md
+- Before running shell commands, read `~/.codex/RTK.md` (RTK command proxy rules) and follow it.
 
 <!-- CODEGRAPH_START -->
 ## CodeGraph

@@ -1,7 +1,7 @@
 ---
 name: settings-sync
 description: >-
-  Codexのプロジェクト設定（.Codex/settings.local.json）とグローバル設定（~/.Codex/settings.json）の
+  Claude Code のプロジェクト設定（.claude/settings.local.json）とグローバル設定（~/.claude/settings.json）の
   権限ルール（allow/deny/ask）を比較し、重複の削除とグローバルへの移行を支援する。
 disable-model-invocation: true
 ---
@@ -16,10 +16,10 @@ disable-model-invocation: true
 
 以下の2ファイルを読み込む:
 
-- **グローバル**: `~/.Codex/settings.json` の `permissions`（`allow` / `deny` / `ask`）
-- **プロジェクト**: カレントプロジェクトの `.Codex/settings.local.json` の `permissions`（同上）
+- **グローバル**: `~/.claude/settings.json` の `permissions`（`allow` / `deny` / `ask`）
+- **プロジェクト**: カレントプロジェクトの `.claude/settings.local.json` の `permissions`（同上）
 
-プロジェクト側に `.Codex/settings.local.json` が存在しない場合、その旨を伝えて終了する。
+プロジェクト側に `.claude/settings.local.json` が存在しない場合、その旨を伝えて終了する。
 
 ## 2. 重複ルールの検出と削除
 
@@ -72,8 +72,8 @@ disable-model-invocation: true
 
 ユーザーの指示に従い:
 
-1. 選択されたルールを `~/.Codex/settings.json` の該当カテゴリに追加する
-2. 移行したルールを `.Codex/settings.local.json` から削除する
+1. 選択されたルールを `~/.claude/settings.json` の該当カテゴリに追加する
+2. 移行したルールを `.claude/settings.local.json` から削除する
 3. 空になったカテゴリキーを削除する
 4. `permissions` 自体が空オブジェクトになった場合は、`settings.local.json` から `permissions` キーを削除する（他のフィールドが残っていれば保持）
 
@@ -95,6 +95,6 @@ disable-model-invocation: true
 プロジェクトに残留: N件
 
 変更されたファイル:
-- ~/.Codex/settings.json
-- .Codex/settings.local.json
+- ~/.claude/settings.json
+- .claude/settings.local.json
 ```

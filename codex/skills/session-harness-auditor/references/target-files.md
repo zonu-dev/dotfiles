@@ -16,7 +16,7 @@ Use global scope for reusable behavior across repositories.
 - Project instructions: `<repo>/AGENTS.md`.
 - Project skills: `<repo>/.codex/skills/<skill-name>/SKILL.md`.
 - Project skill metadata: `<repo>/.codex/skills/<skill-name>/agents/openai.yaml`.
-- Project hooks/settings: inspect `<repo>/.codex/`, `<repo>/.Codex/`, or repository-specific automation files before proposing exact paths.
+- Project hooks/settings: inspect `<repo>/.codex/` or repository-specific automation files before proposing exact paths.
 - Project harnesses/tests: paths depend on the stack, such as `tests/`, `scripts/`, `tools/`, `Makefile`, package scripts, or engine-specific smoke tests.
 
 Use project scope for repository-specific commands, generated assets, game/app workflows, and local QA conventions.
