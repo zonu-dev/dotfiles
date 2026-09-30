@@ -76,7 +76,6 @@ link_file "$repo_root/zed/.config/zed/settings.json" "$HOME/.config/zed/settings
 link_file "$repo_root/gh-dash/.config/gh-dash/config.yml" "$HOME/.config/gh-dash/config.yml"
 link_file "$repo_root/codex/skills/dotfiles-tool-sync" "$HOME/.codex/skills/dotfiles-tool-sync"
 link_file "$repo_root/codex/skills/dotfiles-secret-update" "$HOME/.codex/skills/dotfiles-secret-update"
-link_file "$repo_root/hammerspoon/.hammerspoon/init.lua" "$HOME/.hammerspoon/init.lua"
 link_file "$repo_root/ghostty/.config/ghostty/config" "$HOME/.config/ghostty/config"
 link_file "$repo_root/zsh-abbr/.config/zsh-abbr/user-abbreviations" "$HOME/.config/zsh-abbr/user-abbreviations"
 link_file "$repo_root/claude/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"

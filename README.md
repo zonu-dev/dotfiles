@@ -14,7 +14,7 @@ Publicly tracked:
 - global Git ignore
 - tmux, yazi, Zed, gh-dash settings
 - personal Codex skills that contain no secrets
-- Hammerspoon, Ghostty, zsh-abbr settings
+- Ghostty and zsh-abbr settings
 - Claude Code user config (CLAUDE.md, settings.json, hooks, skills, statusline) with machine paths replaced by `$HOME`
 - Codex AGENTS.md and a curated `codex/config.reference.toml` (not symlinked)
 - personal Codex skills (github-pr-review, slack-mrkdwn, opensrc, godot-mobile, hatch-pet, session-harness-auditor, create-goal-prompt, zoochi-icon)
@@ -69,6 +69,7 @@ Run the local validation suite before committing changes:
 - `deadbranch` (v0.4.0) is a manually installed binary in `~/.local/bin`; it is not in Homebrew
 - Go is managed by gvm (`~/.gvm`), not Homebrew; `.zshrc` sources it only when present
 - run `./scripts/macos-defaults.sh` once on a new Mac
+- Hammerspoon config (`~/.hammerspoon/init.lua`) is intentionally kept out of this public repo; restore it from private backup
 - Ghostty: remove `~/Library/Application Support/com.mitchellh.ghostty/config` if it exists; that file overrides the XDG config linked by install.sh
 - `~/.claude/settings.json` and Xcode key bindings are copied once (not symlinked) because the apps write them back; re-copy into the repo when you change them
 - `~/.config/zsh-abbr/user-abbreviations` and `~/.codex/AGENTS.md` are symlinked and get written back by `abbr add` / codegraph; commit those changes deliberately
