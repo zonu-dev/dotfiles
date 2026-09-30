@@ -14,7 +14,7 @@ brew "fzf"
 brew "ripgrep"
 brew "tmux"
 brew "zoxide"
-brew "zsh-abbr"
+brew "olets/tap/zsh-abbr"
 brew "yazi"
 brew "tig"
 brew "micro"
@@ -61,6 +61,9 @@ brew "yamllint"
 
 # Project-specific CLI tools
 brew "rtk-ai/tap/rtk"
+brew "cmake"
+brew "repomix"
+brew "rust"
 
 # Apps and fonts
 cask "bitwarden"
@@ -68,3 +71,4 @@ cask "font-blex-mono-nerd-font"
 cask "font-symbols-only-nerd-font"
 cask "ghostty"
 cask "godot"
+cask "hammerspoon"

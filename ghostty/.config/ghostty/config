@@ -1,0 +1,53 @@
+# フォント
+font-family = BlexMono Nerd Font Mono
+font-size = 12
+window-title-font-family = BlexMono Nerd Font Mono
+
+# テーマ
+theme = Popping And Locking
+
+# ウィンドウ
+window-inherit-font-size = true
+window-inherit-working-directory = true
+window-padding-balance = true
+window-padding-color = background
+window-padding-x = 10
+window-padding-y = 10
+window-save-state = always
+window-subtitle = working-directory
+window-vsync = true
+
+# マウス
+mouse-hide-while-typing = true
+
+# 画面分割
+split-divider-color = #E7D6B5
+unfocused-split-opacity = 0.5
+
+# macOS設定
+macos-titlebar-style = transparent
+macos-window-shadow = true
+
+# クリップボード
+clipboard-read = allow
+clipboard-write = allow
+
+# その他
+link-url = true
+working-directory = inherit
+
+# キーバインド
+## 画面の上下ページスクロール
+keybind = cmd+up=scroll_page_up
+keybind = cmd+down=scroll_page_down
+
+## 画面の上下端までスクロール
+keybind = cmd+shift+up=scroll_to_top
+keybind = cmd+shift+down=scroll_to_bottom
+
+## 画面の左右分割
+keybind = cmd+shift+left=new_split:left
+keybind = cmd+shift+right=new_split:right
+
+## 分割画面の均等化
+keybind = cmd+shift+space=equalize_splits

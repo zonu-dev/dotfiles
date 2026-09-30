@@ -1,0 +1,76 @@
+# Codex CLI / Desktop の設定リファレンス（~/.codex/config.toml から抜粋）
+# 端末固有の [projects.*] [hooks.state.*] [marketplaces.openai-*] [apps.*] [notice] と、
+# ChatGPT.app が自動生成する node_repl / computer-use の MCP 設定は含めない。
+# symlink せず、新端末で必要な項目を手で移す。
+
+model = "gpt-6-luna"
+model_reasoning_effort = "xhigh"
+sandbox_mode = "workspace-write"
+personality = "pragmatic"
+suppress_unstable_features_warning = true
+web_search = "live"
+service_tier = "default"
+
+[sandbox_workspace_write]
+network_access = true
+
+[features]
+unified_exec = true
+multi_agent = true
+prevent_idle_sleep = true
+terminal_resize_reflow = true
+goals = true
+js_repl = false
+
+[mcp_servers.codegraph]
+command = "codegraph"
+args = [ "serve", "--mcp" ]
+
+[mcp_servers.openaiDeveloperDocs]
+url = "https://developers.openai.com/mcp"
+
+[plugins."github@openai-curated"]
+enabled = true
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+[plugins."figma@openai-curated"]
+enabled = true
+[plugins."slack@openai-curated"]
+enabled = true
+[plugins."computer-use@openai-bundled"]
+enabled = true
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+[plugins."browser@openai-bundled"]
+enabled = true
+[plugins."chrome@openai-bundled"]
+enabled = true
+[plugins."ponytail@ponytail"]
+enabled = true
+[plugins."visualize@openai-bundled"]
+enabled = true
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[marketplaces.ponytail]
+source_type = "git"
+source = "https://github.com/DietrichGebert/ponytail.git"
+
+[tui]
+status_line = [ "model-with-reasoning", "context-remaining", "current-dir", "model-name", "project-root", "git-branch", "five-hour-limit" ]
+
+[desktop]
+appearanceTheme = "dark"
+usePointerCursors = false
+followUpQueueMode = "queue"
+notifications-turn-mode = "always"
+default-service-tier = "priority"
+preventSleepWhileRunning = true
+dock-icon-preference = "codex-system"
+conversationDetailMode = "STEPS_COMMANDS"

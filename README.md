@@ -14,6 +14,9 @@ Publicly tracked:
 - global Git ignore
 - tmux, yazi, Zed, gh-dash settings
 - personal Codex skills that contain no secrets
+- Hammerspoon, Ghostty, cmux, zsh-abbr settings
+- Claude Code user config (CLAUDE.md, settings.json, hooks, skills, statusline) with machine paths replaced by `$HOME`
+- Codex AGENTS.md and a curated `codex/config.reference.toml` (not symlinked)
 
 Not tracked:
 

@@ -3,3 +3,7 @@ experimental = true
 
 [tools]
 node = "20.19.4"
+jq = "1.8.1"
+yq = "4.44.6"
+sops = "3.11.0"
+"ubi:Warashi/cage" = "0.1.13"
