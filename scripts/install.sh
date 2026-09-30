@@ -51,7 +51,11 @@ copy_file() {
   fi
 
   if [[ -e "$target" || -L "$target" ]]; then
-    printf 'keep existing: %s\n' "$target"
+    if [[ -f "$target" ]] && ! cmp -s "$source" "$target"; then
+      printf 'keep existing (differs from repo): %s\n' "$target"
+    else
+      printf 'keep existing: %s\n' "$target"
+    fi
     return 0
   fi
 
@@ -81,6 +85,12 @@ link_file "$repo_root/claude/.claude/cmux.md" "$HOME/.claude/cmux.md"
 link_file "$repo_root/claude/.claude/cmux-reference.md" "$HOME/.claude/cmux-reference.md"
 link_file "$repo_root/claude/.claude/statusline.py" "$HOME/.claude/statusline.py"
 copy_file "$repo_root/claude/.claude/settings.json" "$HOME/.claude/settings.json"
+# 旧版 install.sh は ~/.claude/hooks をディレクトリ symlink にしていた。残っていると
+# ファイル単位 link がリポ内へ迷い込むので先に外す。
+if [[ -L "$HOME/.claude/hooks" ]]; then
+  printf 'warning: %s is a symlink (legacy layout). Removing it before linking hook files.\n' "$HOME/.claude/hooks" >&2
+  run rm "$HOME/.claude/hooks"
+fi
 link_file "$repo_root/claude/.claude/hooks/auto-implement-guard.sh" "$HOME/.claude/hooks/auto-implement-guard.sh"
 link_file "$repo_root/claude/.claude/hooks/default-guard.sh" "$HOME/.claude/hooks/default-guard.sh"
 link_file "$repo_root/claude/.claude/hooks/rtk-rewrite.sh" "$HOME/.claude/hooks/rtk-rewrite.sh"
